@@ -40,13 +40,19 @@ export const AnimalList = () => {
                 {console.log("AnimalList: Render", animals)}
                 {
                     animals.map(animal => {
-                        const owner = customers.map(customer => customer.id === animals.customerId)
-                        const clinic = locations.map(location => location.id === animals.locationId)
+                        let owner = customers.map(customer => customer.id === animals.customerId)
+                            if (owner === undefined) {
+                                owner = { name: "" }
+                            }
+                        let location = locations.map(location => location.id === animals.locationId)
+                            if ( location === undefined) {
+                                location = { name: "" }
+                            }
                     // Gathering relevant objects from database by comparing the animal object foreign key with the private key in its home database
 
                     
                     // Pass in new data to build your props object
-                        return <AnimalCard key={animal.id} location={clinic} customer={owner} animal={animal} />
+                        return <AnimalCard key={animal.id} location={location} owner={owner} animal={animal} />
                     })
             }
             </div>
