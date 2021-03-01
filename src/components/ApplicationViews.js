@@ -11,6 +11,7 @@ import { LocationProvider } from "./location/LocationProvider"
 import { LocationList } from "./location/LocationList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeList"
+import { AnimalForm } from "./animal/AnimalForm"
 
 
 export const ApplicationViews = () => {
@@ -22,16 +23,15 @@ export const ApplicationViews = () => {
             </Route>
 
             {/* render the animal list when http://localhost:3000/animals */}
-            <AnimalProvider>
-                <Route exact path="/animals">
-                    <AnimalList />
-                </Route>
-            </AnimalProvider>
+            {/* Form Tag Needs Context From Multiple Sources */}           
             
-            {/* Form Tag Needs Context From Multiple Sources */}
             <AnimalProvider>
                 <LocationProvider>
                     <CustomerProvider>
+                        <Route exact path="/animals">
+                            <AnimalList />
+                        </Route>
+                        
                         <Route exact path="/animals/create">
                             <AnimalForm />
                         </Route>

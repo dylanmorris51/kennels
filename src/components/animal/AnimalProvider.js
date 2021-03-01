@@ -35,6 +35,10 @@ export const AnimalProvider = (props) => {
         allows any child elements to access them.
     */
 
+
+
+
+
     //This component exposes the following to other components
     return (
         <AnimalContext.Provider value={{

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react"
 // Allows this module to access the components exposed from AnimalProvider
 import { AnimalContext } from './AnimalProvider'
-import { LocationContext } from './location/LocationProvider'
-import { CustomerContext } from './customer/CustomerProvider'
+import { LocationContext } from '../location/LocationProvider'
+import { CustomerContext } from '../customer/CustomerProvider'
 import { AnimalCard } from './AnimalCard'
 import "./Animal.css"
 import { useHistory } from "react-router-dom"
@@ -25,7 +25,7 @@ export const AnimalList = () => {
     // contains method which can change the URL
     const history = useHistory()
 
-    //Animal Form Component changes URL renders form
+    
     
 
     return (
