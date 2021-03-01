@@ -9,7 +9,7 @@ export const AnimalContext = createContext()
 export const AnimalProvider = (props) => {
     
     //Holds the state of the component and a function that updates it
-    const [animals, setAnimals] = useState(][)
+    const [animals, setAnimals] = useState([])
 
     //Defining fetch call within module scope so it can be exported
     const getAnimals = () => {

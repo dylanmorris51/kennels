@@ -11,7 +11,7 @@ import { LocationProvider } from "./location/LocationProvider"
 import { LocationList } from "./location/LocationList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeList"
-//TODO: import for AnimalForm component
+
 
 export const ApplicationViews = () => {
     return (
@@ -28,6 +28,16 @@ export const ApplicationViews = () => {
                 </Route>
             </AnimalProvider>
             
+            {/* Form Tag Needs Context From Multiple Sources */}
+            <AnimalProvider>
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route exact path="/animals/create">
+                            <AnimalForm />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
+            </AnimalProvider>
             
             <LocationProvider>
                 <Route path="/locations">
@@ -47,16 +57,6 @@ export const ApplicationViews = () => {
                 </Route>
             </EmployeeProvider>
 
-            {/* Form Tag Needs Context From Multiple Sources */}
-            <AnimalProvider>
-                <LocationProvider>
-                    <CustomerProvider>
-                        <Route exact path="/animals/create">
-                            <AnimalForm />
-                        </Route>
-                    </CustomerProvider>
-                </LocationProvider>
-            </AnimalProvider>
         </>
     )
 }
