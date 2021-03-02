@@ -40,14 +40,10 @@ export const AnimalList = () => {
                 {console.log("AnimalList: Render", animals)}
                 {
                     animals.map(animal => {
-                        let owner = customers.map(customer => customer.id === animals.customerId)
-                            if (owner === undefined) {
-                                owner = { name: "" }
-                            }
-                        let location = locations.map(location => location.id === animals.locationId)
-                            if ( location === undefined) {
-                                location = { name: "" }
-                            }
+                        let owner = customers.find(customer => customer.id === animal.customerId)
+                            
+                        let location = locations.find(location => location.id === animal.locationId)
+                            
                     // Gathering relevant objects from database by comparing the animal object foreign key with the private key in its home database
 
                     
