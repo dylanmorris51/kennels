@@ -8,8 +8,8 @@ export const AnimalDetail = () => {
     const { getAnimalById } = useContext(AnimalContext)
 
     const [animal, setAnimal] = useState({})
-
-    const { animalId } = useParams();
+    console.log("Animal check", animal)
+    const {animalId} = useParams();
     const history = useHistory()
 
     useEffect(() => {

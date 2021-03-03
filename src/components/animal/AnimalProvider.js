@@ -35,9 +35,9 @@ export const AnimalProvider = (props) => {
         allows any child elements to access them.
     */
 
-    const getAnimalById = id => {
+    const getAnimalById = (id) => {
         return fetch(`http://localhost:8088/animals/${id}?_expand=location&_expand=customer`)
-            .then(res => res.json)
+            .then(res => res.json())
     }
 
 
