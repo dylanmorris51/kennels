@@ -5,13 +5,20 @@ import { useParams, useHistory } from "react-router-dom"
 
 export const AnimalDetail = () => {
 
-    const { getAnimalById } = useContext(AnimalContext)
+    const { getAnimalById, releaseAnimal } = useContext(AnimalContext)
 
     const [animal, setAnimal] = useState({})
     console.log("Animal check", animal)
     const {animalId} = useParams();
     console.log("Animal ID???", animalId)
     const history = useHistory()
+
+    const handleRelease = () => {
+        releaseAnimal(animal.id)
+            .then(() => {
+                history.push("/animals")
+            })
+    }
 
     useEffect(() => {
         console.log("useEffect", animalId)
@@ -27,6 +34,7 @@ export const AnimalDetail = () => {
             <div className="animal__breed">{animal.breed}</div>
             <div className="animal__location">Location: {animal.location?.name}</div>
             <div className="animal__owner">Customer: {animal.customer?.name}</div>
+            <button onClick={handleRelease}>Release Animal</button>
         </section>
     )
 }
