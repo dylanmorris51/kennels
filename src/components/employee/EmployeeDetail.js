@@ -5,7 +5,7 @@ import { useParams, useHistory } from "react-router-dom"
 
 export const EmployeeDetail = () => {
 
-    const { getEmployeeById } = useContext(EmployeeContext)
+    const { getEmployeeById, releaseEmployee } = useContext(EmployeeContext)
 
     const [employee, setEmployee] = useState({})
     
@@ -13,6 +13,13 @@ export const EmployeeDetail = () => {
     const { employeeId } = useParams()
     
     const history = useHistory()
+
+    const handleRelease = () => {
+        releaseEmployee(employee.id)
+            .then(() => {
+                history.push("/employees")
+            })
+    }
     
     useEffect(() => {
         getEmployeeById(employeeId)
@@ -25,6 +32,7 @@ export const EmployeeDetail = () => {
         <section className="employee">
             <h3 className="employee__name">{employee.name}</h3>
             <div className="employee__location">{employee.location?.name}</div>
+            <button onClick={handleRelease}>Terminate Employment</button>
         </section>
     )
 }
