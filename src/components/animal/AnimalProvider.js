@@ -35,6 +35,10 @@ export const AnimalProvider = (props) => {
         allows any child elements to access them.
     */
 
+    const getAnimalById = id => {
+        return fetch('http://localhost:8088/animals/${id}?_expand=location&_expand=customer')
+            .then(res => res.json)
+    }
 
 
 
@@ -42,7 +46,7 @@ export const AnimalProvider = (props) => {
     //This component exposes the following to other components
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal
+            animals, getAnimals, addAnimal, getAnimalById
         }}>
             {props.children}
         </AnimalContext.Provider>
