@@ -52,7 +52,8 @@ export const AnimalProvider = (props) => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            body: JSON.stringify(animal)
         })
         .then(getAnimals)
     }
