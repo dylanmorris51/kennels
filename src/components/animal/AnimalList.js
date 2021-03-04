@@ -38,7 +38,7 @@ export const AnimalList = () => {
         }
     }, [searchTerms, animals])
 
-    
+   //! errant commit message said it wasn't working but it was, I just hadn't refreshed the page 
     
 
     return (
