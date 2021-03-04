@@ -29,6 +29,15 @@ export const AnimalList = () => {
         .then(getAnimals)
     }, [])
 
+    // Update variable as state changes
+    useEffect=(() => {
+        if (searchTerms !== "") {
+            const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms))
+            setFiltered(subset)
+        } else {
+            setFiltered(animals)
+        }
+    }, [searchTerms, animals])
 
     
     
@@ -38,13 +47,12 @@ export const AnimalList = () => {
         <>
             <h2>Animals</h2>
                 <button onClick={() => {history.push("/animals/create")}}>
-                    Add Animal
+                    Make Reservation
                 </button>
         
             <div className="animals">
-                {console.log("AnimalList: Render", animals)}
                 {
-                    animals.map(animal => {
+                    filteredAnimals.map(animal => {
                         let owner = customers.find(customer => customer.id === animal.customerId)
                             
                         let location = locations.find(location => location.id === animal.locationId)
