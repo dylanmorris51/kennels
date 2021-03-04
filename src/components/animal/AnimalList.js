@@ -10,9 +10,16 @@ import { useHistory } from "react-router-dom"
 export const AnimalList = () => {
 
     //This state changes when getAnimals is invoked below
-    const { animals, getAnimals } = useContext(AnimalContext)
+    const { animals, getAnimals, searchTerms } = useContext(AnimalContext)
     const { locations, getLocations } = useContext(LocationContext)
     const { customers, getCustomers } = useContext(CustomerContext)
+
+
+
+    const [ filteredAnimals, setFiltered ] = useState([])
+
+    // contains method which can change the URL
+    const history = useHistory()
 
     //useEffect - reach out to the world for something that cannot be handled during render
     useEffect(() => {
@@ -22,8 +29,6 @@ export const AnimalList = () => {
         .then(getAnimals)
     }, [])
 
-    // contains method which can change the URL
-    const history = useHistory()
 
     
     

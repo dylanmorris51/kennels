@@ -59,10 +59,13 @@ export const AnimalProvider = (props) => {
     }
 
 
+    const [ searchTerms, setSearchTerms ] = useState("")
+
+
     //This component exposes the following to other components
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal
+            animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal, searchTerms, setSearchTerms
         }}>
             {props.children}
         </AnimalContext.Provider>
