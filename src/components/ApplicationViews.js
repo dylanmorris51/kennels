@@ -68,14 +68,18 @@ export const ApplicationViews = () => {
             <AnimalProvider>
                 <EmployeeProvider>
                     <LocationProvider>
-                        <Route path="/employees">
+                        <Route exact path="/employees">
                             <EmployeeList />
                         </Route>
-                        <Route exact path="/employees/create">
+                        <Route path="/employees/create">
                             <EmployeeForm />
                         </Route>
 
-                        <Route exact path="/employee/detail/:employeeId(\d+)">
+                        <Route path="/employees/edit/:employeeId(\d+)">
+                            <EmployeeForm />
+                        </Route>
+
+                        <Route path="/employees/detail/:employeeId(\d+)">
                             <EmployeeDetail />
                         </Route>
 

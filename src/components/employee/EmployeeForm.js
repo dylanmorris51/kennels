@@ -57,7 +57,7 @@ export const EmployeeForm = () => {
                     id: employee.id,
                     name: employee.name,
                     locationId: parseInt(employee.locationId)
-                }).then(history.push(() => `/employees/detail/${employee.id}`))
+                }).then(() => history.push(`/employees/detail/${employee.id}`))
             } else {
                 addEmployee({
                     name: employee.name,
@@ -94,7 +94,7 @@ export const EmployeeForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="location">Assign to location: </label>
-                    <select defaultValue={employee.locationId} name="locationId" id="locationId" onChange={handleControlledInputChange} className="form-control" >
+                    <select value={employee.locationId} name="locationId" id="locationId" onChange={handleControlledInputChange} className="form-control" >
                         <option value="0">Select a location</option>
                         {locations.map(l => (
                             <option key={l.id} value={l.id}>
