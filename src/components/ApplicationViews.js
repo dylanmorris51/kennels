@@ -51,10 +51,13 @@ export const ApplicationViews = () => {
             </AnimalProvider>
             
             <LocationProvider>
-                <Route path="/locations">
+                <Route exact path="/locations">
                     <LocationList />
                 </Route>
-                <Route exact path="/locations/create">
+                <Route path="/locations/create">
+                    <LocationForm />
+                </Route>
+                <Route path="/locations/edit/:locationId(\d+)" >
                     <LocationForm />
                 </Route>
             </LocationProvider>

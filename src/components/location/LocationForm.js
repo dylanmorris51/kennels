@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { LocationContext } from "./LocationProvider"
-import { useHistory } from "react-router-dom"
 import "./Location.css"
+import { useParams, useHistory } from "react-router-dom"
 
 export const LocationForm = () => {
 
     //Get context
-    const { locations, getLocations, addLocation } = useContext(LocationContext)
+    const { getLocations, addLocation, updateLocation, getLocationById } = useContext(LocationContext)
 
     
     // create state for new location
@@ -15,11 +15,23 @@ export const LocationForm = () => {
         address: "",
     })
 
-    //Allow URL to change
+    const [isLoading, setIsLoading] = useState(true)
+    const { locationId } = useParams()
+//Allow URL to change
     const history = useHistory()
 
     useEffect(() => {
-        getLocations()
+        getLocations().then(() => {
+            if (locationId) {
+                getLocationById(locationId)
+                    .then(location => {
+                        setLocation(location)
+                        setIsLoading(false)
+                    })
+            } else {
+                setIsLoading(false)
+            }
+        })
     }, [])
 
     const handleControlledInputChange = event => {
@@ -35,18 +47,28 @@ export const LocationForm = () => {
         setLocation(newLocation)
     }
 
-    const handleClickSaveLocation = event => {
+    const handleSaveLocation = () => {
 
-        event.preventDefault()
-
-        addLocation(location)
-            .then(() => history.push("/locations"))
+        // Disable button after first click so it can't be mashed
+        setIsLoading(true)
+        if (locationId) {
+            updateLocation({
+                id: location.id,
+                name: location.name,
+                address: location.address
+            }).then(() => history.push(`locations/detail/${location.id}`))
+        } else {
+            addLocation({
+                name: location.name,
+                address: location.address
+            }).then(() => history.push("/locations"))
+        }
     
     }
 
     return (
         <form className="locationForm">
-            <h2 className="locationForm__title">New Location</h2>
+            <h2 className="locationForm__title">{locationId ? "Edit Location" : "Add Location"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Location name:</label>
@@ -60,8 +82,12 @@ export const LocationForm = () => {
                 </div>
             </fieldset>
             <button className="btn btn-primary"
-                onClick={handleClickSaveLocation}>
-                Save location
+                disabled={isLoading}
+                onClick={event => {
+                    event.preventDefault()
+                    handleSaveLocation()
+                }}>
+                {locationId ? "Save Location" : "Add Location"}
             </button>
         </form>
     )
