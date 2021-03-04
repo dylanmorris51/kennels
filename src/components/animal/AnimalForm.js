@@ -47,14 +47,7 @@ export const AnimalForm = () => {
             // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of an animal
             if (animalId) {
                 //PUT - update
-                let tempAnimal = {
-                    id: animal.id,
-                    name: animal.name,
-                    breed: animal.breed,
-                    locationId: parseInt(animal.locationId),
-                    customerId: parseInt(animal.customerId)
-                }
-                console.log('tempAnimal: ', tempAnimal);
+                
                 updateAnimal({
                     id: animal.id,
                     name: animal.name,
