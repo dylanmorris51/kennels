@@ -5,9 +5,9 @@ import "./Employee.css"
 import { EmployeeContext } from "./EmployeeProvider"
 
 export const EmployeeForm = () => {
-    const { addEmployee, getEmployeeById, updateEmployee, addEmployee } = useContext(EmployeeContext)
+    const { addEmployee, getEmployeeById, updateEmployee } = useContext(EmployeeContext)
     const { locations, getLocations } = useContext(LocationContext)
-
+    
     const [employee, setEmployee] = useState({
         name: "",
         locationId: 0
@@ -53,9 +53,16 @@ export const EmployeeForm = () => {
             setIsLoading(true)
 
             if (employeeId) {
-                updateEmployee(newEmployee).then(history.push(() => `/employees/detail/${employee.id}`))
+                updateEmployee({
+                    id: employee.id,
+                    name: employee.name,
+                    locationId: parseInt(employee.locationId)
+                }).then(history.push(() => `/employees/detail/${employee.id}`))
             } else {
-                addEmployee(newEmployee).then(() => history.push("/employees"))
+                addEmployee({
+                    name: employee.name,
+                    locationId: parseInt(employee.locationId)
+                }).then(() => history.push("/employees"))
             }
         }
     }
@@ -69,7 +76,7 @@ export const EmployeeForm = () => {
                         setIsLoading(false)
                     })
             } else {
-                setIsLoading(true)
+                setIsLoading(false)
             }
         })
     }, [])

@@ -35,7 +35,7 @@ export const EmployeeProvider = (props) => {
             .then(res => res.json())
     }
 
-    const updateEmployee = (id) => {
+    const updateEmployee = (employee) => {
         return fetch(`http://localhost:8088/animals/${employee.id}`, {
             method: "PUT",
             headers: {
