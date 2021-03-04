@@ -5,7 +5,7 @@ import "./Location.css"
 export const LocationCard = ({location}) => (
         <section className="location">
             <h3 className="location__name">
-                <Link to={`/location/detail/${location.id}`}>
+                <Link to={`/locations/detail/${location.id}`}>
                     {location.name}
                 </Link>
             </h3>

@@ -39,6 +39,10 @@ export const ApplicationViews = () => {
                             <AnimalForm />
                         </Route>
 
+                        <Route path="/animals/edit/:animalId(\d+)">
+                            <AnimalForm />
+                        </Route>
+
                         <Route exact path="/animals/detail/:animalId(\d+)">
                             <AnimalDetail />
                         </Route>
@@ -47,10 +51,13 @@ export const ApplicationViews = () => {
             </AnimalProvider>
             
             <LocationProvider>
-                <Route path="/locations">
+                <Route exact path="/locations">
                     <LocationList />
                 </Route>
-                <Route exact path="/locations/create">
+                <Route path="/locations/create">
+                    <LocationForm />
+                </Route>
+                <Route path="/locations/edit/:locationId(\d+)" >
                     <LocationForm />
                 </Route>
             </LocationProvider>
@@ -64,18 +71,22 @@ export const ApplicationViews = () => {
             <AnimalProvider>
                 <EmployeeProvider>
                     <LocationProvider>
-                        <Route path="/employees">
+                        <Route exact path="/employees">
                             <EmployeeList />
                         </Route>
-                        <Route exact path="/employees/create">
+                        <Route path="/employees/create">
                             <EmployeeForm />
                         </Route>
 
-                        <Route exact path="/employee/detail/:employeeId(\d+)">
+                        <Route path="/employees/edit/:employeeId(\d+)">
+                            <EmployeeForm />
+                        </Route>
+
+                        <Route path="/employees/detail/:employeeId(\d+)">
                             <EmployeeDetail />
                         </Route>
 
-                        <Route exact path="/location/detail/:locationId(\d+)">
+                        <Route exact path="/locations/detail/:locationId(\d+)">
                             <LocationDetail />
                         </Route>
                     </LocationProvider>
