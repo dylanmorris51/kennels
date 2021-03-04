@@ -56,7 +56,7 @@ export const LocationForm = () => {
                 id: location.id,
                 name: location.name,
                 address: location.address
-            }).then(() => history.push(`locations/detail/${location.id}`))
+            }).then(() => history.push(`/locations/detail/${location.id}`))
         } else {
             addLocation({
                 name: location.name,
