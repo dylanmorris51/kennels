@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 // Allows this module to access the components exposed from AnimalProvider
 import { AnimalContext } from './AnimalProvider'
 import { LocationContext } from '../location/LocationProvider'
@@ -23,14 +23,13 @@ export const AnimalList = () => {
 
     //useEffect - reach out to the world for something that cannot be handled during render
     useEffect(() => {
-        console.log("AnimalList: Initial render before data")
         getLocations()
         .then(getCustomers)
         .then(getAnimals)
     }, [])
 
     // Update variable as state changes
-    useEffect=(() => {
+    useEffect(() => {
         if (searchTerms !== "") {
             const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms))
             setFiltered(subset)
